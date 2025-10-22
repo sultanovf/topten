@@ -1,0 +1,82 @@
+color:
+  palette:
+    # LinkedIn colors
+    dark-blue: "#0073b1"
+    blue: "#0a66c2"
+    light-blue: "#71b7fb"
+    dark-grey: "#313335"
+    grey: "#86888a"
+    light-grey: "#caccce"
+    purple: "#8d6cab"
+    red: "#cb112d"
+    light-red: "#f3536b"
+    orange: "#fe9958"
+    off-white: "#f4f2ee"
+    light-yellow: "#f9c982"
+    yellow: "#e9a53f"
+    dark-yellow: "#c37d16"
+    dark-green: "#01754f"
+    green: "#0f9f6f"
+    light-green: "#37c898"
+    # Other colors
+    white: "#ffffff"
+    black: "#000000"
+
+  background:
+    light: off-white
+    dark: black
+  foreground:
+    light: black
+    dark: white
+  primary: dark-blue
+  secondary: 
+    light: grey
+    dark: light-grey
+  tertiary: orange
+  success: 
+    light: dark-grey
+    dark: light-grey
+  info: purple
+  warning: orange
+  danger: red
+
+# Color sources
+# [1] https://digitalsynopsis.com/design/brand-colors/
+# [2] https://www.linkedin.com/
+
+typography:
+  fonts:
+    - family: Inter 
+      source: google
+    - family: Source Code Pro # monospace font
+      source: google
+
+  base: Inter
+  headings: 
+    family: Inter
+    color: 
+      light: dark-blue
+      dark: white
+  monospace: Source Code Pro
+  monospace-inline:
+    family: Source Code Pro
+    color: 
+      light: dark-green #orange
+      dark: light-red
+    background-color: 
+      light: white
+      dark: dark-grey
+  monospace-block:
+    family: Source Code Pro
+    color:
+      light: dark-green
+      dark: light-red
+    background-color: 
+      light: white
+      dark: dark-grey
+  link:
+    color: 
+      light: dark-blue
+      dark: light-blue
+    weight: bold
+    decoration: "none"
