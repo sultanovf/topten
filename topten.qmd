@@ -2,8 +2,8 @@
 title: "Top ten countries by GDP according to PPP"
 description: "Top ten countries worldwide in terms of GDP by purchasing power parity over the years, shown by animated plot"
 author: "Fazliddin Sultonov"
-date: "2025-20-10"
-date-format: "MMM D, YYYY"
+date: "2025-10-20"
+date-format: "MMM, YYYY"
 format: 
     html: 
         code-fold: true
