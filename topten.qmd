@@ -201,7 +201,7 @@ df_plt |>
     scale_y_continuous(labels = function(y) ifelse(y == 0, paste0(y), paste0(y, "k"))) +
     geom_text(aes(label = gdp), hjust = -0.1, color = "darkgrey", fontface = "bold") +
     labs(
-      x = NULL, y = "GDP, PPP in Mlrd. in USD (k = 1000)", 
+      x = NULL, y = "GDP, PPP in Tsd.(k = 1000) Mlrd. USD", 
       title = "**Top ten countries by GDP, PPP in 2024**",
       caption = social_caption) +
     #geom_label(aes(label = paste("Year:",year)), x = 2, y = 30, size = 10, fill = "white", col = "gray") +
@@ -236,7 +236,7 @@ plt <-
     geom_text(aes(label = gdp), hjust = -0.1, color = "darkgrey", fontface = "bold") +
     geom_label(aes(label = paste("Year:",year)), x = 2, y = 30, size = 8, fill = "white", col = "gray") +
     labs(
-      x = "GDP, PPP in Mlrd. in USD (k = 1000)", y = NULL, 
+      x = NULL, y = "GDP, PPP in Tsd.(k = 1000) Mlrd.USD",  
       title = "**Top ten countries by GDP, PPP in 1990-2024**",
       caption = social_caption) +
     coord_flip(clip = "off", expand = FALSE) +
@@ -325,7 +325,7 @@ pt_anim <-
   geom_image(aes(image = cflags, y = -0.5),  size = 0.12, by = "width")+
   coord_flip() +
   labs(
-    x = NULL, y = "GDP, PPP in Tsd. (k = 1000) Mlrd. in USD",
+    x = NULL, y = "GDP, PPP in Tsd.(k = 1000) Mlrd. USD",
     title = glue::glue("**Top ten countries by GDP, PPP in: {{closest_state}}**"),
     caption = cap)+
   theme_minimal()+
