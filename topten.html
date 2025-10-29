@@ -366,7 +366,7 @@ Datasource: <a href="https://data.worldbank.org/" data-text-align="center">World
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="co">#select(-ccode) |&gt; </span></span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span> </span>
 <span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> gdp, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">arrange</span>(year, <span class="fu">desc</span>(gdp)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="co">#arrange(year, desc(gdp)) |&gt; </span></span>
 <span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">mutate</span>(<span class="at">rank=</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
 <span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">ungroup</span>()</span>
 <span id="cb4-9"><a href="#cb4-9"></a></span>
@@ -394,8 +394,8 @@ Datasource: <a href="https://data.worldbank.org/" data-text-align="center">World
 </div>
 </section>
 </section>
-<section id="df-for-plot" class="level2">
-<h2 class="anchored" data-anchor-id="df-for-plot">df for plot</h2>
+<section id="change-some-countries-names" class="level2">
+<h2 class="anchored" data-anchor-id="change-some-countries-names">change some countries names</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -411,12 +411,19 @@ Datasource: <a href="https://data.worldbank.org/" data-text-align="center">World
 <span id="cb6-10"><a href="#cb6-10"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> country</span>
 <span id="cb6-11"><a href="#cb6-11"></a>    )</span>
 <span id="cb6-12"><a href="#cb6-12"></a>  )</span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-13"><a href="#cb6-13"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(<span class="fu">sample_n</span>(df_plt, <span class="dv">10</span>)) <span class="co"># show sample 10 rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ccode"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["gdp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[5],"type":["int"],"align":["right"]},{"label":["cflags"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Russia","2":"RUS","3":"2006","4":"2.13","5":"7","6":"images/RUS.png"},{"1":"USA","2":"USA","3":"2009","4":"14.48","5":"1","6":"images/USA.png"},{"1":"Germany","2":"DEU","3":"2019","4":"4.92","5":"5","6":"images/DEU.png"},{"1":"India","2":"IND","3":"2017","4":"8.35","5":"3","6":"images/IND.png"},{"1":"Germany","2":"DEU","3":"2001","4":"2.36","5":"5","6":"images/DEU.png"},{"1":"China","2":"CHN","3":"1998","4":"3.08","5":"3","6":"images/CHN.png"},{"1":"Germany","2":"DEU","3":"2012","4":"3.56","5":"5","6":"images/DEU.png"},{"1":"Japan","2":"JPN","3":"1991","4":"2.63","5":"2","6":"images/JPN.png"},{"1":"Indonesia","2":"IDN","3":"2015","4":"2.63","5":"10","6":"images/IDN.png"},{"1":"UK","2":"GBR","3":"2002","4":"1.73","5":"7","6":"images/GBR.png"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
 </div>
 </section>
-<section id="plot" class="level1">
-<h1>plot</h1>
+<section id="plot-for-2024" class="level1">
+<h1>plot for 2024</h1>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -452,8 +459,10 @@ Datasource: <a href="https://data.worldbank.org/" data-text-align="center">World
 </div>
 </div>
 </div>
-<section id="animated-plot-over-the-years" class="level2">
-<h2 class="anchored" data-anchor-id="animated-plot-over-the-years">animated plot over the years</h2>
+<section id="animated-plots-over-the-years" class="level2">
+<h2 class="anchored" data-anchor-id="animated-plots-over-the-years">animated plots over the years</h2>
+<section id="plot1" class="level3">
+<h3 class="anchored" data-anchor-id="plot1">#plot1</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -461,15 +470,15 @@ Datasource: <a href="https://data.worldbank.org/" data-text-align="center">World
 <span id="cb8-2"><a href="#cb8-2"></a>  df_plt <span class="sc">|&gt;</span>  </span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(rank, gdp), <span class="at">y =</span> gdp)) <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>    <span class="fu">geom_image</span>(<span class="fu">aes</span>(<span class="at">image =</span> cflags, <span class="at">y =</span> <span class="sc">-</span><span class="fl">2.3</span>),  <span class="at">size =</span> <span class="fl">0.13</span>, <span class="at">by =</span> <span class="st">"width"</span>) <span class="sc">+</span> </span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="fu">geom_image</span>(<span class="fu">aes</span>(<span class="at">image =</span> cflags, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.3</span>),  <span class="at">size =</span> <span class="fl">0.13</span>, <span class="at">by =</span> <span class="st">"width"</span>) <span class="sc">+</span> </span>
 <span id="cb8-6"><a href="#cb8-6"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="cf">function</span>(y) <span class="fu">ifelse</span>(y <span class="sc">==</span> <span class="dv">0</span>, <span class="fu">paste0</span>(y), <span class="fu">paste0</span>(y, <span class="st">"k"</span>))) <span class="sc">+</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> gdp), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"darkgrey"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
 <span id="cb8-8"><a href="#cb8-8"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="st">"Year:"</span>,year)), <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
 <span id="cb8-9"><a href="#cb8-9"></a>    <span class="fu">labs</span>(</span>
-<span id="cb8-10"><a href="#cb8-10"></a>      <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"GDP, PPP in Mlrd. in USD (k = 1000)"</span>, </span>
+<span id="cb8-10"><a href="#cb8-10"></a>      <span class="at">x =</span> <span class="st">"GDP, PPP in Mlrd. in USD (k = 1000)"</span>, <span class="at">y =</span> <span class="cn">NULL</span>, </span>
 <span id="cb8-11"><a href="#cb8-11"></a>      <span class="at">title =</span> <span class="st">"**Top ten countries by GDP, PPP in 1990-2024**"</span>,</span>
 <span id="cb8-12"><a href="#cb8-12"></a>      <span class="at">caption =</span> social_caption) <span class="sc">+</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="fu">coord_flip</span>(<span class="at">clip =</span> <span class="st">"off"</span>, <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb8-14"><a href="#cb8-14"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb8-15"><a href="#cb8-15"></a>    <span class="fu">theme</span>(</span>
 <span id="cb8-16"><a href="#cb8-16"></a>      <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">color=</span><span class="st">"steelblue4"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
@@ -503,6 +512,66 @@ Datasource: <a href="https://data.worldbank.org/" data-text-align="center">World
 </div>
 </div>
 </div>
+</section>
+<section id="plot2-by-fixed_y" class="level3">
+<h3 class="anchored" data-anchor-id="plot2-by-fixed_y">#plot2 <em>(by fixed_y)</em></h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>pt_anim1 <span class="ot">&lt;-</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  df_plt <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">arrange</span>(gdp, <span class="at">.by_group =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">mutate</span>(<span class="at">rank1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="co">#filter(year==2024) |&gt; </span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">xmin=</span><span class="dv">0</span>, <span class="at">xmax=</span>gdp, <span class="at">y=</span>rank1, <span class="at">ymin =</span> rank1 <span class="sc">-</span> <span class="fl">0.45</span>, <span class="at">ymax =</span> rank1 <span class="sc">+</span> <span class="fl">0.45</span>, <span class="at">group=</span>ccode</span>
+<span id="cb9-9"><a href="#cb9-9"></a>  )) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">geom_rect</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>  <span class="fu">facet_null</span>() <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>gdp, <span class="at">label =</span> <span class="fu">as.character</span>(gdp)), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"slategray"</span>, <span class="at">size =</span> <span class="fl">3.7</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>gdp, <span class="at">label =</span> <span class="fu">as.character</span>(country)), <span class="at">hjust =</span> <span class="fl">1.05</span>, <span class="at">color =</span> <span class="st">"cornsilk1"</span>, <span class="at">size =</span> <span class="fl">4.2</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>)<span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="cf">function</span>(y) <span class="fu">ifelse</span>(y <span class="sc">==</span> <span class="dv">0</span>, <span class="fu">paste0</span>(y), <span class="fu">paste0</span>(y, <span class="st">"k"</span>)))<span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>  <span class="fu">geom_image</span>(<span class="fu">aes</span>(<span class="at">x=</span>gdp, <span class="at">image =</span> cflags), <span class="at">x=</span><span class="sc">-</span><span class="fl">0.7</span>, <span class="at">size =</span> <span class="fl">0.12</span>, <span class="at">by =</span> <span class="st">"width"</span>) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-18"><a href="#cb9-18"></a>    <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="st">"GDP, PPP in Tsd. (k = 1000) Mlrd. USD"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19"></a>    <span class="at">title =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"**Top ten countries by GDP, PPP in: {{frame_along}}**"</span>),</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="at">caption =</span> cap)<span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-23"><a href="#cb9-23"></a>    <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">color=</span><span class="st">"steelblue4"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb9-24"><a href="#cb9-24"></a>    <span class="at">plot.caption =</span> <span class="fu">element_markdown</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb9-25"><a href="#cb9-25"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb9-26"><a href="#cb9-26"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-27"><a href="#cb9-27"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-28"><a href="#cb9-28"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-29"><a href="#cb9-29"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-30"><a href="#cb9-30"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a>  <span class="fu">transition_reveal</span>(year, <span class="at">keep_last =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a>  <span class="fu">ease_aes</span>(<span class="st">"cubic-in-out"</span>) <span class="sc">+</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a>  <span class="fu">enter_fade</span>() <span class="sc">+</span></span>
+<span id="cb9-34"><a href="#cb9-34"></a>  <span class="fu">exit_fade</span>()<span class="sc">+</span></span>
+<span id="cb9-35"><a href="#cb9-35"></a>  <span class="fu">view_follow</span>(<span class="at">fixed_y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-36"><a href="#cb9-36"></a></span>
+<span id="cb9-37"><a href="#cb9-37"></a>anmt1 <span class="ot">&lt;-</span> <span class="fu">animate</span>(</span>
+<span id="cb9-38"><a href="#cb9-38"></a>  pt_anim1,</span>
+<span id="cb9-39"><a href="#cb9-39"></a>  <span class="at">duration =</span> <span class="dv">30</span>,</span>
+<span id="cb9-40"><a href="#cb9-40"></a>  <span class="at">fps =</span> <span class="dv">10</span>,</span>
+<span id="cb9-41"><a href="#cb9-41"></a>  <span class="at">start_pause =</span><span class="dv">3</span>,</span>
+<span id="cb9-42"><a href="#cb9-42"></a>  <span class="at">end_pause =</span> <span class="dv">5</span>,</span>
+<span id="cb9-43"><a href="#cb9-43"></a>  <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>())</span>
+<span id="cb9-44"><a href="#cb9-44"></a>anmt1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="topten_files/figure-html/unnamed-chunk-11-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="topten_files/figure-html/unnamed-chunk-11-1.gif" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
